@@ -6,10 +6,9 @@ const getTimeString = dateObj => {
 
 const Clock = () => {
   const [time, setTime] = useState(new Date());
-  const handleClick = () => setTime(new Date());
 
   useEffect(() => {
-    const intervalId = setInterval(handleClick, 1000);
+    const intervalId = setInterval(() => setTime(new Date()), 1000);
 
     return () => clearInterval(intervalId);
   }, []);
