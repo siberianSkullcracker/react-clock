@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useTime } from '../utils/hooks';
 
-const getTimeString = dateObj => {
-  return `${dateObj.getHours()}:${dateObj.getMinutes()}:${dateObj.getSeconds()}`;
+const getTimeString = time => {
+  return `${time.hours}:${time.minutes}:${time.seconds}`;
 }
 
 const Clock = () => {
-  const [time, setTime] = useState(new Date());
-
-  useEffect(() => {
-    const intervalId = setInterval(() => setTime(new Date()), 1000);
-
-    return () => clearInterval(intervalId);
-  }, []);
+  const time = useTime();
 
   useEffect(() => {
     document.title = `Clock - ${getTimeString(time)}`;
